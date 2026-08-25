@@ -2,7 +2,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 17px;
+  margin-bottom: 24px;
   gap: 24px;
 }
 
@@ -16,8 +16,8 @@
 .estado p,
 .semAcesso p {
   color: var(--primary-dark);
-  font-size: 9px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: 0.09em;
   text-transform: uppercase;
 }
@@ -27,16 +27,16 @@
 .semAcesso h1 {
   margin: 5px 0 0;
   color: var(--ink);
-  font-size: clamp(24px, 4vw, 32px);
-  font-weight: 500;
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 680;
   letter-spacing: -0.035em;
 }
 
 .cabecalhoPagina > div > span {
   display: block;
-  margin-top: 7px;
+  margin-top: 10px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .resumo {
@@ -45,15 +45,16 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
+  box-shadow: var(--shadow-card);
 }
 
 .resumo > span {
   display: grid;
-  min-width: 110px;
-  padding: 10px 13px;
+  min-width: 120px;
+  padding: 13px 16px;
   color: var(--muted);
-  font-size: 8px;
-  gap: 2px;
+  font-size: 10px;
+  gap: 4px;
 }
 
 .resumo > span + span {
@@ -62,8 +63,8 @@
 
 .resumo strong {
   color: var(--ink);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 20px;
+  font-weight: 680;
 }
 
 .resumo span[data-alerta] strong {
@@ -73,11 +74,11 @@
 .avisoRecuperacao {
   display: flex;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
   border: 1px solid color-mix(in srgb, var(--warning) 22%, var(--line));
   border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--warning) 7%, var(--surface));
-  padding: 10px 12px;
+  padding: 13px 15px;
   color: var(--ink-soft);
   gap: 9px;
 }
@@ -97,7 +98,7 @@
 
 .avisoRecuperacao p {
   margin: 0;
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -159,7 +160,7 @@
   border-radius: 9px;
   background: var(--primary);
   padding: 9px 12px;
-  color: var(--surface);
+  color: var(--on-primary);
   font-size: 10px;
   font-weight: 500;
 }

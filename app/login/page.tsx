@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { acordarTalk } from "@/lib/talk-client";
+import { TemaToggle } from "@/components/tema-toggle";
 import { FormularioLogin } from "./formulario";
 import styles from "./login.module.css";
 
@@ -14,6 +15,7 @@ export default function LoginPage() {
 
   return (
     <main className={styles.pagina}>
+      <TemaToggle flutuante />
       <div className={styles.orbeUm} aria-hidden />
       <div className={styles.orbeDois} aria-hidden />
 

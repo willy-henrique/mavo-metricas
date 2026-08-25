@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { acordarTalk } from "@/lib/talk-client";
+import { TemaToggle } from "@/components/tema-toggle";
 import { FormularioRedefinicao } from "./formulario";
 import styles from "../login/login.module.css";
 
@@ -27,6 +28,7 @@ export default async function RedefinirPage({
 
   return (
     <main className={styles.pagina}>
+      <TemaToggle flutuante />
       <div className={styles.orbeUm} aria-hidden />
       <div className={styles.orbeDois} aria-hidden />
       <section className={styles.cartao} aria-labelledby="titulo-redefinicao">

@@ -31,6 +31,10 @@ function hrefCsv(query: string): string {
   return query ? `/api/relatorios/csv?${query}` : "/api/relatorios/csv";
 }
 
+function hrefPdf(query: string): string {
+  return query ? `/api/relatorios/pdf?${query}` : "/api/relatorios/pdf";
+}
+
 export function TabelaRelatorio({
   dados,
   timezone,
@@ -67,10 +71,16 @@ export function TabelaRelatorio({
             recorte
           </span>
         </div>
-        <a className={styles.exportar} href={hrefCsv(query)}>
-          <span aria-hidden>↓</span>
-          Exportar CSV
-        </a>
+        <div className={styles.exportacoes} aria-label="Exportar relatório">
+          <a className={styles.exportarSecundario} href={hrefCsv(query)}>
+            <svg viewBox="0 0 20 20" aria-hidden><path d="M10 3v9m0 0 3-3m-3 3L7 9M4 15.5h12" /></svg>
+            Exportar CSV
+          </a>
+          <a className={styles.exportar} href={hrefPdf(query)}>
+            <svg viewBox="0 0 20 20" aria-hidden><path d="M6 2.5h5l3 3v12H6v-15Zm5 0v3h3M8 10h4m-4 2.5h4" /></svg>
+            Exportar PDF
+          </a>
+        </div>
       </header>
 
       <div className={styles.rolagem}>

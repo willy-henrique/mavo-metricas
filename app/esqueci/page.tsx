@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { acordarTalk } from "@/lib/talk-client";
+import { TemaToggle } from "@/components/tema-toggle";
 import { FormularioRecuperacao } from "./formulario";
 import styles from "../login/login.module.css";
 
@@ -15,6 +16,7 @@ export default function EsqueciPage() {
 
   return (
     <main className={styles.pagina}>
+      <TemaToggle flutuante />
       <div className={styles.orbeUm} aria-hidden />
       <div className={styles.orbeDois} aria-hidden />
       <section className={styles.cartao} aria-labelledby="titulo-recuperacao">

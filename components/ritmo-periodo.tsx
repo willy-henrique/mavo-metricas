@@ -70,14 +70,14 @@ export function RitmoPeriodo({ serie, meta }: { serie: BaldeSerie[]; meta: Serie
                 axisLine={false}
                 tickLine={false}
                 minTickGap={28}
-                tick={{ fill: "var(--muted-light)", fontSize: 9 }}
+                tick={{ fill: "var(--muted-light)", fontSize: 11 }}
               />
               <YAxis
                 allowDecimals={false}
                 axisLine={false}
                 tickLine={false}
                 width={30}
-                tick={{ fill: "var(--muted-light)", fontSize: 9 }}
+                tick={{ fill: "var(--muted-light)", fontSize: 11 }}
                 tickFormatter={(valor) => formatarNumero(Number(valor))}
               />
               <Tooltip
@@ -87,7 +87,8 @@ export function RitmoPeriodo({ serie, meta }: { serie: BaldeSerie[]; meta: Serie
                   border: "1px solid var(--line)",
                   borderRadius: "var(--radius-sm)",
                   boxShadow: "var(--shadow-soft)",
-                  fontSize: 11,
+                  color: "var(--ink)",
+                  fontSize: 12,
                 }}
                 formatter={(valor) => [formatarNumero(Number(valor)), "Mensagens"]}
               />
@@ -102,7 +103,7 @@ export function RitmoPeriodo({ serie, meta }: { serie: BaldeSerie[]; meta: Serie
                   dataKey="rotuloPico"
                   position="top"
                   fill="var(--primary-dark)"
-                  fontSize={9}
+                  fontSize={11}
                 />
               </Bar>
             </BarChart>

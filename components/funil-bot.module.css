@@ -1,8 +1,8 @@
 .grade {
   display: grid;
   align-items: stretch;
-  gap: 14px;
-  grid-template-columns: minmax(220px, 0.38fr) minmax(0, 1fr);
+  gap: 18px;
+  grid-template-columns: minmax(260px, 0.4fr) minmax(0, 1fr);
 }
 
 .impacto,
@@ -11,13 +11,13 @@
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--surface);
-  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 5%, transparent);
+  box-shadow: var(--shadow-card);
 }
 
 .impacto {
   display: grid;
   align-content: start;
-  padding: 23px;
+  padding: 28px;
 }
 
 .impacto p,
@@ -29,7 +29,8 @@
 .impacto p,
 .funil header p {
   color: var(--muted-light);
-  font-size: 9px;
+  font-size: 10px;
+  font-weight: 650;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -38,15 +39,15 @@
 .funil header h2 {
   margin: 4px 0 0;
   color: var(--ink);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 19px;
+  font-weight: 680;
 }
 
 .impacto > strong {
-  margin-top: 28px;
+  margin-top: 34px;
   color: var(--primary-dark);
   font-size: clamp(42px, 7vw, 58px);
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.055em;
   line-height: 1;
 }
@@ -55,7 +56,7 @@
   max-width: 31ch;
   margin-top: 10px;
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.55;
 }
 
@@ -66,14 +67,14 @@
   margin-top: 24px;
   border-radius: 999px;
   background: var(--success-soft);
-  padding: 7px 9px;
+  padding: 8px 11px;
   color: var(--success);
-  font-size: 9px;
+  font-size: 11px;
   gap: 5px;
 }
 
 .funil {
-  padding: 21px;
+  padding: 27px;
 }
 
 .funil header {
@@ -90,43 +91,43 @@
 
 .funil header > span {
   color: var(--muted-light);
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .etapas {
   display: grid;
-  margin-top: 24px;
-  gap: 16px;
+  margin-top: 29px;
+  gap: 20px;
 }
 
 .etapa > div:first-child {
   display: grid;
   align-items: baseline;
-  margin-bottom: 7px;
+  margin-bottom: 9px;
   grid-template-columns: minmax(0, 1fr) auto auto;
   gap: 10px;
 }
 
 .etapa span {
   color: var(--muted);
-  font-size: 10px;
+  font-size: 12px;
 }
 
 .etapa strong {
   color: var(--ink);
-  font-size: 15px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 680;
 }
 
 .etapa small {
   min-width: 35px;
   color: var(--muted-light);
-  font-size: 8px;
+  font-size: 10px;
   text-align: right;
 }
 
 .trilho {
-  height: 9px;
+  height: 11px;
   overflow: hidden;
   border-radius: 999px;
   background: var(--surface-soft);
@@ -141,7 +142,7 @@
 
 .destinos {
   display: grid;
-  margin-top: 23px;
+  margin-top: 27px;
   gap: 10px;
   grid-template-columns: 1fr 1fr;
 }
@@ -151,20 +152,20 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface-soft);
-  padding: 13px;
+  padding: 17px;
   gap: 5px;
 }
 
 .destino > span,
 .destino small {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .destino strong {
   color: var(--primary-dark);
-  font-size: 23px;
-  font-weight: 500;
+  font-size: 28px;
+  font-weight: 680;
 }
 
 .destino[data-tom="humano"] strong {
@@ -173,7 +174,7 @@
 
 .destino small {
   color: var(--muted-light);
-  font-size: 8px;
+  font-size: 10px;
 }
 
 .tentativas {
@@ -189,18 +190,18 @@
 .tentativas span,
 .tentativas small {
   color: var(--muted);
-  font-size: 9px;
+  font-size: 11px;
 }
 
 .tentativas strong {
   color: var(--warning);
-  font-size: 17px;
-  font-weight: 500;
+  font-size: 21px;
+  font-weight: 680;
 }
 
 .tentativas small {
   color: var(--muted-light);
-  font-size: 8px;
+  font-size: 10px;
   grid-column: 1 / -1;
 }
 
