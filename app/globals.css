@@ -17,11 +17,19 @@
   --warning: #E99620;
   --danger: #D64B5D;
   --info: #2878D0;
+  --brand-start: #8173F1;
+  --brand-mid: #604DDF;
+  --brand-end: #4533BF;
+  --danger-soft: #FFF0F2;
+  --success-soft: #EAF8F3;
   --radius-sm: 10px;
   --radius: 14px;
   --radius-lg: 20px;
   --transition: 180ms ease;
   --focus-ring: color-mix(in srgb, var(--primary) 30%, transparent);
+  --shadow-soft: 0 14px 42px color-mix(in srgb, var(--ink) 10%, transparent);
+  --shadow-float: 0 18px 60px color-mix(in srgb, var(--ink) 16%, transparent);
+  --content-max: 1240px;
   --font-ui: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
 }
@@ -40,6 +48,8 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-success-soft: var(--success-soft);
   --font-sans: var(--font-ui);
 }
 

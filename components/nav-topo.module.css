@@ -1,0 +1,257 @@
+.pular {
+  position: fixed;
+  top: 10px;
+  left: 12px;
+  z-index: 100;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  padding: 9px 12px;
+  color: var(--surface);
+  font-size: 12px;
+  transform: translateY(-160%);
+  transition: transform var(--transition);
+}
+
+.pular:focus {
+  transform: translateY(0);
+}
+
+.cabecalho {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter: blur(18px);
+}
+
+.interior {
+  display: grid;
+  width: min(100%, var(--content-max));
+  min-height: 66px;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 22px;
+  gap: 30px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.marca {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.simbolo {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border-radius: 10px;
+  background: linear-gradient(145deg, var(--brand-start), var(--brand-end));
+  color: var(--surface);
+  font-size: 14px;
+}
+
+.navegacao {
+  display: flex;
+  min-width: 0;
+  height: 66px;
+  align-items: stretch;
+  gap: 3px;
+}
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 0 13px;
+  color: var(--muted);
+  font-size: 12px;
+  white-space: nowrap;
+  transition:
+    color var(--transition),
+    background var(--transition);
+}
+
+.link:hover:not([data-desabilitado]) {
+  background: var(--surface-soft);
+  color: var(--ink);
+}
+
+.link[data-ativo] {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-weight: 500;
+}
+
+.link[data-ativo]::after {
+  position: absolute;
+  right: 13px;
+  bottom: 4px;
+  left: 13px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--primary);
+  content: "";
+}
+
+.link[data-desabilitado] {
+  cursor: not-allowed;
+  opacity: 0.56;
+}
+
+.perfil {
+  position: relative;
+}
+
+.perfil summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--radius-sm);
+  padding: 5px;
+  cursor: pointer;
+  list-style: none;
+  transition: background var(--transition);
+}
+
+.perfil summary::-webkit-details-marker {
+  display: none;
+}
+
+.perfil summary:hover,
+.perfil[open] summary {
+  background: var(--surface-soft);
+}
+
+.identidade {
+  display: grid;
+  max-width: 170px;
+  justify-items: end;
+  gap: 2px;
+  text-align: right;
+}
+
+.identidade strong,
+.identidade small {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.identidade strong {
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.identidade small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.avatar {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--primary) 18%, var(--primary-soft));
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.menuPerfil {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+  width: min(270px, calc(100vw - 32px));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  padding: 13px;
+}
+
+.menuPerfil > div {
+  display: grid;
+  gap: 3px;
+  padding: 3px 4px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.menuPerfil strong {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.menuPerfil span {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menuPerfil button {
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  margin-top: 9px;
+  background: transparent;
+  padding: 9px;
+  color: var(--danger);
+  font-size: 11px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.menuPerfil button:hover {
+  background: var(--danger-soft);
+}
+
+@media (max-width: 780px) {
+  .interior {
+    min-height: auto;
+    padding: 10px 14px 0;
+    gap: 8px 14px;
+    grid-template-columns: 1fr auto;
+  }
+
+  .navegacao {
+    width: calc(100vw - 28px);
+    height: 46px;
+    order: 3;
+    overflow-x: auto;
+    grid-column: 1 / -1;
+    scrollbar-width: none;
+  }
+
+  .navegacao::-webkit-scrollbar {
+    display: none;
+  }
+
+  .link {
+    margin: 3px 0 8px;
+  }
+
+  .identidade {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .nomeMarca {
+    display: none;
+  }
+}
