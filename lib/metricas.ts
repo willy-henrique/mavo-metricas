@@ -113,6 +113,22 @@ export const relatorioTicketsSchema = z.object({
   proximoCursor: z.string().min(1).max(512).nullable(),
 });
 
+export const usuarioGerenciadoSchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  email: z.string().email(),
+  role: z.enum(["admin", "gestor", "atendente"]),
+  isActive: z.boolean(),
+  recoveryPhone: z.string().regex(/^[0-9]{10,15}$/).nullable(),
+  createdAt: z.string().datetime(),
+  updatedAt: z.string().datetime(),
+  lastLoginAt: z.string().datetime().nullable(),
+});
+
+export const usuariosGerenciadosSchema = z.object({
+  users: z.array(usuarioGerenciadoSchema),
+});
+
 export type BlocoPeriodo = z.infer<typeof blocoPeriodoSchema>;
 export type Overview = z.infer<typeof overviewSchema>;
 export type BaldeSerie = z.infer<typeof serieTemporalSchema>[number];
@@ -124,3 +140,4 @@ export type DesempenhoBot = z.infer<typeof desempenhoBotSchema>;
 export type MetricasFila = z.infer<typeof metricasFilasSchema>[number];
 export type LinhaRelatorioTicket = z.infer<typeof linhaRelatorioTicketSchema>;
 export type RelatorioTickets = z.infer<typeof relatorioTicketsSchema>;
+export type UsuarioGerenciado = z.infer<typeof usuarioGerenciadoSchema>;

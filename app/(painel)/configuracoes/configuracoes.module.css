@@ -1,0 +1,196 @@
+.cabecalhoPagina {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 17px;
+  gap: 24px;
+}
+
+.cabecalhoPagina p,
+.cabecalhoPagina h1,
+.cabecalhoPagina > div > span {
+  margin: 0;
+}
+
+.cabecalhoPagina p,
+.estado p,
+.semAcesso p {
+  color: var(--primary-dark);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.cabecalhoPagina h1,
+.estado h1,
+.semAcesso h1 {
+  margin: 5px 0 0;
+  color: var(--ink);
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.cabecalhoPagina > div > span {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.resumo {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.resumo > span {
+  display: grid;
+  min-width: 110px;
+  padding: 10px 13px;
+  color: var(--muted);
+  font-size: 8px;
+  gap: 2px;
+}
+
+.resumo > span + span {
+  border-left: 1px solid var(--line);
+}
+
+.resumo strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.resumo span[data-alerta] strong {
+  color: var(--warning);
+}
+
+.avisoRecuperacao {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  border: 1px solid color-mix(in srgb, var(--warning) 22%, var(--line));
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--warning) 7%, var(--surface));
+  padding: 10px 12px;
+  color: var(--ink-soft);
+  gap: 9px;
+}
+
+.avisoRecuperacao span {
+  display: grid;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--warning) 15%, var(--surface));
+  color: var(--warning);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.avisoRecuperacao p {
+  margin: 0;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.estado,
+.semAcesso {
+  display: flex;
+  min-height: 280px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 30px;
+  gap: 18px;
+}
+
+.estado > span,
+.semAcesso > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.estado > span {
+  width: 13px;
+  height: 13px;
+  border: 3px solid var(--primary-soft);
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.estado p,
+.estado small,
+.semAcesso p,
+.semAcesso small {
+  margin: 0;
+}
+
+.estado small,
+.semAcesso small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.semAcesso h1 {
+  font-size: clamp(21px, 4vw, 28px);
+}
+
+.semAcesso a {
+  display: inline-flex;
+  margin-top: 14px;
+  border-radius: 9px;
+  background: var(--primary);
+  padding: 9px 12px;
+  color: var(--surface);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+@media (max-width: 760px) {
+  .cabecalhoPagina {
+    display: grid;
+  }
+
+  .resumo {
+    width: 100%;
+  }
+
+  .resumo > span {
+    min-width: 0;
+    flex: 1;
+  }
+}
+
+@media (max-width: 460px) {
+  .resumo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .resumo > span {
+    padding-inline: 8px;
+  }
+
+  .semAcesso {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

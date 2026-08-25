@@ -8,6 +8,7 @@ import styles from "./nav-topo.module.css";
 type NavTopoProps = {
   nome: string;
   empresa: string;
+  role: "admin" | "gestor";
 };
 
 const itens = [
@@ -21,7 +22,7 @@ function inicial(nome: string): string {
   return nome.trim().charAt(0).toLocaleUpperCase("pt-BR") || "M";
 }
 
-export function NavTopo({ nome, empresa }: NavTopoProps) {
+export function NavTopo({ nome, empresa, role }: NavTopoProps) {
   const pathname = usePathname();
 
   function estaAtivo(href: string): boolean {
@@ -83,6 +84,11 @@ export function NavTopo({ nome, empresa }: NavTopoProps) {
                 <strong>{nome}</strong>
                 <span>{empresa}</span>
               </div>
+              {role === "admin" ? (
+                <Link className={styles.menuLink} href="/configuracoes">
+                  <span aria-hidden>⚙</span> Configurações da empresa
+                </Link>
+              ) : null}
               <form action={sair}>
                 <button type="submit">Sair com segurança</button>
               </form>

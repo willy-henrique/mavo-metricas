@@ -15,7 +15,7 @@ export class TalkError extends Error {
 }
 
 type OpcoesRequisicao = {
-  method?: "GET" | "POST";
+  method?: "GET" | "POST" | "PATCH" | "DELETE";
   token?: string;
   body?: unknown;
   timeoutMs?: number;
@@ -148,6 +148,32 @@ export async function talkPost<T>(
     method: "POST",
     token: opcoes.token,
     body: corpo,
+  });
+  const envelope = envelopeDeDados<T>(resposta.body);
+  return { data: envelope.data };
+}
+
+export async function talkPatch<T>(
+  caminho: string,
+  corpo: unknown,
+  opcoes: { token?: string } = {},
+): Promise<{ data: T }> {
+  const resposta = await requisitarJson(caminho, {
+    method: "PATCH",
+    token: opcoes.token,
+    body: corpo,
+  });
+  const envelope = envelopeDeDados<T>(resposta.body);
+  return { data: envelope.data };
+}
+
+export async function talkDelete<T>(
+  caminho: string,
+  opcoes: { token?: string } = {},
+): Promise<{ data: T }> {
+  const resposta = await requisitarJson(caminho, {
+    method: "DELETE",
+    token: opcoes.token,
   });
   const envelope = envelopeDeDados<T>(resposta.body);
   return { data: envelope.data };

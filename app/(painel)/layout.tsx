@@ -14,10 +14,11 @@ export default async function PainelLayout({ children }: Readonly<{ children: Re
   const pronto = contexto.estado === "pronto";
   const nome = pronto ? contexto.perfil.user.name : contexto.sessao.name;
   const empresa = pronto ? contexto.perfil.organization.name : "Sua empresa";
+  const role = pronto ? contexto.perfil.user.role : contexto.sessao.role;
 
   return (
     <div className={styles.shell}>
-      <NavTopo nome={nome} empresa={empresa} />
+      <NavTopo nome={nome} empresa={empresa} role={role} />
       {!pronto ? (
         <div className={styles.aviso} role="status">
           O Mavo Talk está acordando. Mostraremos o nome da sua empresa assim que ele responder.

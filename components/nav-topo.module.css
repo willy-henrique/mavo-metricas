@@ -203,11 +203,33 @@
   white-space: nowrap;
 }
 
+.menuLink {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  margin-top: 8px;
+  padding: 9px;
+  color: var(--ink-soft);
+  font-size: 11px;
+  gap: 8px;
+}
+
+.menuLink:hover,
+.menuLink[aria-current="page"] {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.menuLink span {
+  color: var(--primary-dark);
+  font-size: 12px;
+}
+
 .menuPerfil button {
   width: 100%;
   border: 0;
   border-radius: 8px;
-  margin-top: 9px;
+  margin-top: 4px;
   background: transparent;
   padding: 9px;
   color: var(--danger);
