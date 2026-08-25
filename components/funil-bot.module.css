@@ -1,0 +1,221 @@
+.grade {
+  display: grid;
+  align-items: stretch;
+  gap: 14px;
+  grid-template-columns: minmax(220px, 0.38fr) minmax(0, 1fr);
+}
+
+.impacto,
+.funil {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.impacto {
+  display: grid;
+  align-content: start;
+  padding: 23px;
+}
+
+.impacto p,
+.impacto h2,
+.impacto > span {
+  margin: 0;
+}
+
+.impacto p,
+.funil header p {
+  color: var(--muted-light);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.impacto h2,
+.funil header h2 {
+  margin: 4px 0 0;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.impacto > strong {
+  margin-top: 28px;
+  color: var(--primary-dark);
+  font-size: clamp(42px, 7vw, 58px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1;
+}
+
+.impacto > span {
+  max-width: 31ch;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.selo {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  margin-top: 24px;
+  border-radius: 999px;
+  background: var(--success-soft);
+  padding: 7px 9px;
+  color: var(--success);
+  font-size: 9px;
+  gap: 5px;
+}
+
+.funil {
+  padding: 21px;
+}
+
+.funil header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.funil header p,
+.funil header h2 {
+  margin-block: 0;
+}
+
+.funil header > span {
+  color: var(--muted-light);
+  font-size: 8px;
+}
+
+.etapas {
+  display: grid;
+  margin-top: 24px;
+  gap: 16px;
+}
+
+.etapa > div:first-child {
+  display: grid;
+  align-items: baseline;
+  margin-bottom: 7px;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 10px;
+}
+
+.etapa span {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.etapa strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.etapa small {
+  min-width: 35px;
+  color: var(--muted-light);
+  font-size: 8px;
+  text-align: right;
+}
+
+.trilho {
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surface-soft);
+}
+
+.trilho > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--primary);
+}
+
+.destinos {
+  display: grid;
+  margin-top: 23px;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+}
+
+.destino {
+  display: grid;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+  padding: 13px;
+  gap: 5px;
+}
+
+.destino > span,
+.destino small {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.destino strong {
+  color: var(--primary-dark);
+  font-size: 23px;
+  font-weight: 500;
+}
+
+.destino[data-tom="humano"] strong {
+  color: var(--info);
+}
+
+.destino small {
+  color: var(--muted-light);
+  font-size: 8px;
+}
+
+.tentativas {
+  display: grid;
+  align-items: baseline;
+  margin-top: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 3px 10px;
+}
+
+.tentativas span,
+.tentativas small {
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.tentativas strong {
+  color: var(--warning);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.tentativas small {
+  color: var(--muted-light);
+  font-size: 8px;
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 460px) {
+  .destinos {
+    grid-template-columns: 1fr;
+  }
+
+  .funil header {
+    display: grid;
+  }
+}

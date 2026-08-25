@@ -16,13 +16,20 @@ type BarraContextoProps = {
   opcoes: OpcoesContexto;
   periodoAtivo: ChavePeriodo;
   query: string;
+  mostrarFiltrosOperacionais?: boolean;
 };
 
 function valorData(valor: string | null): string {
   return valor && /^\d{4}-\d{2}-\d{2}$/.test(valor) ? valor : "";
 }
 
-export function BarraContexto({ empresa, opcoes, periodoAtivo, query }: BarraContextoProps) {
+export function BarraContexto({
+  empresa,
+  opcoes,
+  periodoAtivo,
+  query,
+  mostrarFiltrosOperacionais = true,
+}: BarraContextoProps) {
   const router = useRouter();
   const pathname = usePathname();
   const detailsPeriodo = useRef<HTMLDetailsElement>(null);
@@ -156,32 +163,36 @@ export function BarraContexto({ empresa, opcoes, periodoAtivo, query }: BarraCon
           </div>
         </details>
 
-        <PilulaFiltro
-          parametro="fila"
-          aliases={["queue_id"]}
-          rotulo="Fila"
-          rotuloPadrao="Todas as filas"
-          valorAtual={params.get("fila") ?? params.get("queue_id")}
-          opcoes={opcoes.filas.map((fila) => ({
-            valor: fila.id,
-            rotulo: fila.nome,
-            cor: fila.cor,
-          }))}
-          query={query}
-        />
+        {mostrarFiltrosOperacionais ? (
+          <>
+            <PilulaFiltro
+              parametro="fila"
+              aliases={["queue_id"]}
+              rotulo="Fila"
+              rotuloPadrao="Todas as filas"
+              valorAtual={params.get("fila") ?? params.get("queue_id")}
+              opcoes={opcoes.filas.map((fila) => ({
+                valor: fila.id,
+                rotulo: fila.nome,
+                cor: fila.cor,
+              }))}
+              query={query}
+            />
 
-        <PilulaFiltro
-          parametro="atendente"
-          aliases={["assignee_id"]}
-          rotulo="Atendente"
-          rotuloPadrao="Todos os atendentes"
-          valorAtual={params.get("atendente") ?? params.get("assignee_id")}
-          opcoes={opcoes.atendentes.map((atendente) => ({
-            valor: atendente.id,
-            rotulo: atendente.nome,
-          }))}
-          query={query}
-        />
+            <PilulaFiltro
+              parametro="atendente"
+              aliases={["assignee_id"]}
+              rotulo="Atendente"
+              rotuloPadrao="Todos os atendentes"
+              valorAtual={params.get("atendente") ?? params.get("assignee_id")}
+              opcoes={opcoes.atendentes.map((atendente) => ({
+                valor: atendente.id,
+                rotulo: atendente.nome,
+              }))}
+              query={query}
+            />
+          </>
+        ) : null}
       </div>
     </section>
   );

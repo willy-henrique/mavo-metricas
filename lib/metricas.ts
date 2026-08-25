@@ -71,6 +71,15 @@ export const agentesSchema = z.array(
   }),
 );
 
+export const desempenhoBotSchema = z.object({
+  conversas: z.number().int().nonnegative(),
+  resolvidasSemHumano: z.number().int().nonnegative(),
+  transferidas: z.number().int().nonnegative(),
+  taxaTransferencia: z.number().min(0).max(1).nullable(),
+  opcoesInvalidas: z.number().int().nonnegative(),
+  triagemConcluida: z.number().int().nonnegative(),
+});
+
 export type BlocoPeriodo = z.infer<typeof blocoPeriodoSchema>;
 export type Overview = z.infer<typeof overviewSchema>;
 export type BaldeSerie = z.infer<typeof serieTemporalSchema>[number];
@@ -78,3 +87,4 @@ export type MetricsMeta = z.infer<typeof metricsMetaSchema>;
 export type SerieMeta = z.infer<typeof serieMetaSchema>;
 export type OpcoesContexto = z.infer<typeof opcoesContextoSchema>;
 export type ProducaoAtendente = z.infer<typeof agentesSchema>[number];
+export type DesempenhoBot = z.infer<typeof desempenhoBotSchema>;
