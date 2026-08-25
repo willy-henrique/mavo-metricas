@@ -1,0 +1,255 @@
+.barra {
+  position: relative;
+  z-index: 30;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.interior {
+  display: flex;
+  width: min(100%, var(--content-max));
+  min-height: 62px;
+  align-items: center;
+  margin: 0 auto;
+  padding: 10px 22px;
+  gap: 9px;
+}
+
+.empresa,
+.pilula {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink-soft);
+}
+
+.empresa {
+  min-width: 0;
+  max-width: 230px;
+  gap: 9px;
+  padding: 4px 13px 4px 5px;
+}
+
+.empresaIcone {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.empresa > span:last-child {
+  display: grid;
+  min-width: 0;
+  gap: 1px;
+}
+
+.empresa small,
+.rotulo {
+  color: var(--muted-light);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.empresa strong,
+.pilula strong {
+  overflow: hidden;
+  font-size: 11px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.divisor {
+  width: 1px;
+  height: 28px;
+  margin: 0 3px;
+  background: var(--line);
+}
+
+.pilulaWrapper {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.pilula {
+  gap: 7px;
+  padding: 0 12px;
+  cursor: pointer;
+  list-style: none;
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+.pilula::-webkit-details-marker {
+  display: none;
+}
+
+.pilula:hover,
+.pilulaWrapper[open] .pilula {
+  border-color: color-mix(in srgb, var(--primary) 30%, var(--line));
+  background: var(--primary-soft);
+  box-shadow: 0 5px 16px color-mix(in srgb, var(--primary) 8%, transparent);
+}
+
+.pilula .rotulo::after {
+  content: ":";
+}
+
+.chevron {
+  margin-left: 2px;
+  color: var(--muted);
+  font-size: 12px;
+  transition: transform var(--transition);
+}
+
+.pilulaWrapper[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  display: grid;
+  width: max-content;
+  min-width: 220px;
+  max-width: min(320px, calc(100vw - 30px));
+  max-height: min(390px, 65vh);
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+  padding: 7px;
+}
+
+.opcao {
+  display: grid;
+  width: 100%;
+  min-height: 37px;
+  align-items: center;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  padding: 7px 9px;
+  gap: 8px;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  color: var(--ink-soft);
+  font-size: 11px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.opcao:hover,
+.opcao[data-selecionada] {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.marcadorCor,
+.marcadorNeutro {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.marcadorNeutro {
+  border: 1px solid var(--line-strong);
+  background: var(--surface-soft);
+}
+
+.popoverPeriodo {
+  width: 310px;
+  max-height: min(520px, 72vh);
+}
+
+.periodosRapidos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.periodosRapidos .opcao {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.custom {
+  display: grid;
+  margin-top: 7px;
+  border-top: 1px solid var(--line);
+  padding: 12px 7px 6px;
+  gap: 9px;
+}
+
+.custom p,
+.dica {
+  margin: 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.custom label {
+  display: grid;
+  gap: 4px;
+  color: var(--ink-soft);
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.custom input {
+  width: 100%;
+  min-height: 38px;
+  border: 1px solid var(--line-strong);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 0 8px;
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.custom input:focus {
+  border-color: var(--primary);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus-ring);
+}
+
+.erroCustom {
+  border-radius: 7px;
+  background: var(--danger-soft);
+  padding: 7px;
+  color: var(--danger);
+  font-size: 9px;
+}
+
+@media (max-width: 760px) {
+  .interior {
+    overflow-x: auto;
+    padding-inline: 14px;
+    scrollbar-width: none;
+  }
+
+  .interior::-webkit-scrollbar {
+    display: none;
+  }
+
+  .empresa {
+    max-width: 180px;
+  }
+
+  .divisor {
+    display: none;
+  }
+}
