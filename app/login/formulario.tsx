@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState, useEffect, useState } from "react";
 import { entrar, type EstadoLogin } from "./actions";
 import styles from "./login.module.css";
@@ -38,7 +39,10 @@ export function FormularioLogin() {
       </div>
 
       <div className={styles.campo}>
-        <label htmlFor="senha">Senha</label>
+        <div className={styles.linhaRotulo}>
+          <label htmlFor="senha">Senha</label>
+          <Link href="/esqueci">Esqueci minha senha</Link>
+        </div>
         <div className={styles.senhaWrapper}>
           <input
             id="senha"
