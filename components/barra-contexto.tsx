@@ -43,6 +43,7 @@ export function BarraContexto({ empresa, opcoes, periodoAtivo, query }: BarraCon
       setCustomVisivel(true);
       return;
     }
+    setCustomVisivel(false);
     const proximos = new URLSearchParams(params);
     proximos.set("periodo", chave);
     proximos.delete("from");

@@ -1,0 +1,97 @@
+.card {
+  display: grid;
+  min-height: 142px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 5%, transparent);
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 31%);
+}
+
+.texto {
+  min-width: 0;
+  padding: 22px 24px;
+}
+
+.rotulo,
+.apoio {
+  margin: 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.rotulo {
+  font-weight: 500;
+}
+
+.valorLinha {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  margin-top: 5px;
+  gap: 7px 13px;
+}
+
+.valorLinha > strong {
+  color: var(--ink);
+  font-size: clamp(31px, 4vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+
+.variacao {
+  display: inline-flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: 10px;
+  gap: 4px;
+}
+
+.variacao > span {
+  font-size: 14px;
+}
+
+.variacao[data-sentido="alta"] {
+  color: var(--success);
+}
+
+.variacao[data-sentido="baixa"] {
+  color: var(--danger);
+}
+
+.apoio {
+  margin-top: 10px;
+  color: var(--muted-light);
+  font-size: 10px;
+}
+
+.sparkline {
+  width: 100%;
+  height: 88px;
+  padding-right: 19px;
+}
+
+.sparkline > span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-top: 44px;
+  background: var(--line);
+}
+
+@media (max-width: 540px) {
+  .card {
+    grid-template-columns: minmax(0, 1fr) 105px;
+  }
+
+  .texto {
+    padding: 19px;
+  }
+
+  .sparkline {
+    padding-right: 12px;
+  }
+}

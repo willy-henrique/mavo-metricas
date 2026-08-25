@@ -23,9 +23,7 @@ export default async function PainelLayout({ children }: Readonly<{ children: Re
           O Mavo Talk está acordando. Mostraremos o nome da sua empresa assim que ele responder.
         </div>
       ) : null}
-      <main id="conteudo-principal" className={styles.conteudo}>
-        {children}
-      </main>
+      <main id="conteudo-principal">{children}</main>
     </div>
   );
 }

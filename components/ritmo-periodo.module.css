@@ -1,0 +1,77 @@
+.card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.cabecalho {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 18px 20px 7px;
+  gap: 20px;
+}
+
+.cabecalho p,
+.cabecalho h2,
+.resumo span,
+.resumo strong {
+  margin: 0;
+}
+
+.cabecalho p,
+.resumo span {
+  color: var(--muted-light);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.cabecalho h2 {
+  margin-top: 3px;
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.resumo {
+  display: grid;
+  justify-items: end;
+  gap: 3px;
+}
+
+.resumo strong {
+  color: var(--primary-dark);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.grafico {
+  width: 100%;
+  height: 228px;
+  padding: 0 11px 10px 6px;
+}
+
+.vazio {
+  display: grid;
+  min-height: 190px;
+  place-items: center;
+  margin: 8px 20px 20px;
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 540px) {
+  .cabecalho {
+    align-items: flex-start;
+    padding-inline: 16px;
+  }
+
+  .grafico {
+    height: 205px;
+  }
+}

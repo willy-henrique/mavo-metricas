@@ -236,13 +236,9 @@
 
 @media (max-width: 760px) {
   .interior {
-    overflow-x: auto;
+    flex-wrap: wrap;
+    overflow: visible;
     padding-inline: 14px;
-    scrollbar-width: none;
-  }
-
-  .interior::-webkit-scrollbar {
-    display: none;
   }
 
   .empresa {
@@ -251,5 +247,11 @@
 
   .divisor {
     display: none;
+  }
+
+  .popoverPeriodo,
+  .pilulaWrapper:last-child .popover {
+    right: 0;
+    left: auto;
   }
 }

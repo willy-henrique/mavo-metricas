@@ -1,0 +1,46 @@
+.card {
+  display: grid;
+  min-width: 0;
+  min-height: 111px;
+  align-content: start;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 15px 16px;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.card strong {
+  overflow: hidden;
+  margin-top: 7px;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card span {
+  overflow: hidden;
+  margin-top: 7px;
+  color: var(--muted-light);
+  font-size: 9px;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card[data-tom="positivo"] strong {
+  color: var(--success);
+}
+
+.card[data-tom="alerta"] strong {
+  color: var(--danger);
+}

@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {
   formatarDuracao,
+  formatarDecimal,
   formatarNumero,
   formatarPorcentagem,
   formatarVariacao,
@@ -27,6 +28,8 @@ test("porcentagem arredonda e trata ausencia", () => {
 
 test("numero usa separador brasileiro", () => {
   assert.equal(formatarNumero(1234), "1.234");
+  assert.equal(formatarDecimal(4.56), "4,6");
+  assert.equal(formatarDecimal(null), "—");
 });
 
 test("variacao contra zero nao vira infinito", () => {

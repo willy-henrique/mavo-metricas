@@ -1,8 +1,17 @@
 const NUMERO = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
+const DECIMAL = new Intl.NumberFormat("pt-BR", {
+  minimumFractionDigits: 1,
+  maximumFractionDigits: 1,
+});
 
 export function formatarNumero(valor: number): string {
   if (!Number.isFinite(valor)) return "—";
   return NUMERO.format(Math.round(valor));
+}
+
+export function formatarDecimal(valor: number | null): string {
+  if (valor === null || !Number.isFinite(valor)) return "—";
+  return DECIMAL.format(valor);
 }
 
 export function formatarDuracao(segundos: number | null): string {
