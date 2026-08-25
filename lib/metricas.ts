@@ -57,9 +57,24 @@ export const opcoesContextoSchema = z.object({
   atendentes: z.array(z.object({ id: z.string().min(1), nome: z.string().min(1) })),
 });
 
+export const agentesSchema = z.array(
+  z.object({
+    id: z.string().min(1),
+    nome: z.string().min(1),
+    tickets: z.number().int().nonnegative(),
+    encerrados: z.number().int().nonnegative(),
+    tmeSegundos: z.number().nonnegative().finite().nullable(),
+    tmaSegundos: z.number().nonnegative().finite().nullable(),
+    csat: z.number().min(1).max(5).nullable(),
+    csatRespostas: z.number().int().nonnegative(),
+    mensagensEnviadas: z.number().int().nonnegative(),
+  }),
+);
+
 export type BlocoPeriodo = z.infer<typeof blocoPeriodoSchema>;
 export type Overview = z.infer<typeof overviewSchema>;
 export type BaldeSerie = z.infer<typeof serieTemporalSchema>[number];
 export type MetricsMeta = z.infer<typeof metricsMetaSchema>;
 export type SerieMeta = z.infer<typeof serieMetaSchema>;
 export type OpcoesContexto = z.infer<typeof opcoesContextoSchema>;
+export type ProducaoAtendente = z.infer<typeof agentesSchema>[number];

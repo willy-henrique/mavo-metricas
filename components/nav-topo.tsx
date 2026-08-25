@@ -1,25 +1,33 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { sair } from "@/app/(painel)/actions";
 import styles from "./nav-topo.module.css";
 
 type NavTopoProps = {
   nome: string;
   empresa: string;
-  ativo: string;
 };
 
 const itens = [
   { chave: "visao-geral", rotulo: "Visão geral", href: "/", disponivel: true },
   { chave: "relatorios", rotulo: "Relatórios", href: "/relatorios", disponivel: false },
   { chave: "automatico", rotulo: "Automático", href: "/automatico", disponivel: false },
-  { chave: "equipe", rotulo: "Equipe", href: "/equipe", disponivel: false },
+  { chave: "equipe", rotulo: "Equipe", href: "/equipe", disponivel: true },
 ];
 
 function inicial(nome: string): string {
   return nome.trim().charAt(0).toLocaleUpperCase("pt-BR") || "M";
 }
 
-export function NavTopo({ nome, empresa, ativo }: NavTopoProps) {
+export function NavTopo({ nome, empresa }: NavTopoProps) {
+  const pathname = usePathname();
+
+  function estaAtivo(href: string): boolean {
+    return href === "/" ? pathname === "/" : pathname.startsWith(href);
+  }
+
   return (
     <>
       <a className={styles.pular} href="#conteudo-principal">
@@ -39,10 +47,10 @@ export function NavTopo({ nome, empresa, ativo }: NavTopoProps) {
               item.disponivel ? (
                 <Link
                   className={styles.link}
-                  data-ativo={ativo === item.chave || undefined}
+                  data-ativo={estaAtivo(item.href) || undefined}
                   href={item.href}
                   key={item.chave}
-                  aria-current={ativo === item.chave ? "page" : undefined}
+                  aria-current={estaAtivo(item.href) ? "page" : undefined}
                 >
                   {item.rotulo}
                 </Link>

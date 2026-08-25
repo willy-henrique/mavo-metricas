@@ -5,6 +5,7 @@ import { MetricaHeroi } from "@/components/metrica-heroi";
 import { MetricaSecundaria } from "@/components/metrica-secundaria";
 import { RitmoPeriodo } from "@/components/ritmo-periodo";
 import { carregarContextoPainel } from "@/lib/contexto-painel";
+import { parametrosMetricas, type ParametrosBusca } from "@/lib/consulta-metricas";
 import {
   formatarDecimal,
   formatarDuracao,
@@ -24,34 +25,6 @@ import { TalkError, talkGet } from "@/lib/talk-client";
 import styles from "./painel.module.css";
 
 export const dynamic = "force-dynamic";
-
-type ParametrosBusca = Record<string, string | string[] | undefined>;
-const PARAMETROS_ACEITOS = [
-  "periodo",
-  "from",
-  "to",
-  "fila",
-  "atendente",
-  "queue_id",
-  "assignee_id",
-] as const;
-
-function parametrosMetricas(entrada: ParametrosBusca): URLSearchParams {
-  const params = new URLSearchParams();
-  for (const chave of PARAMETROS_ACEITOS) {
-    const bruto = entrada[chave];
-    const valor = Array.isArray(bruto) ? bruto[0] : bruto;
-    if (valor?.trim()) params.set(chave, valor.trim());
-  }
-
-  const resolvido = periodoDaUrl(params);
-  if (params.has("periodo") && params.get("periodo") !== resolvido.chave) {
-    params.set("periodo", resolvido.chave);
-    params.delete("from");
-    params.delete("to");
-  }
-  return params;
-}
 
 function horaDaAtualizacao(instante: string, timezone: string): string {
   try {

@@ -1,0 +1,205 @@
+.card,
+.vazio {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.cabecalho {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 20px 21px 16px;
+  gap: 20px;
+}
+
+.cabecalho p,
+.cabecalho h2 {
+  margin: 0;
+}
+
+.cabecalho p {
+  color: var(--muted-light);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cabecalho h2 {
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.cabecalho > span {
+  color: var(--muted-light);
+  font-size: 9px;
+}
+
+.rolagem {
+  width: 100%;
+  overflow-x: auto;
+  border-top: 1px solid var(--line);
+}
+
+.rolagem table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: collapse;
+}
+
+.rolagem th,
+.rolagem td {
+  border-bottom: 1px solid var(--line);
+  padding: 13px 16px;
+  color: var(--ink-soft);
+  font-size: 11px;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.rolagem thead th {
+  background: var(--surface-soft);
+  padding-block: 9px;
+}
+
+.rolagem thead th:first-child,
+.rolagem tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  text-align: left;
+}
+
+.rolagem thead th:first-child {
+  z-index: 3;
+}
+
+.rolagem thead button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: 0;
+  background: transparent;
+  padding: 3px 0;
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.035em;
+  text-transform: uppercase;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.rolagem thead th:first-child button {
+  justify-content: flex-start;
+}
+
+.rolagem thead button:hover,
+.rolagem thead th[aria-sort]:not([aria-sort="none"]) button {
+  color: var(--primary-dark);
+}
+
+.rolagem thead button span {
+  font-size: 11px;
+}
+
+.rolagem tbody th {
+  display: flex;
+  align-items: center;
+  min-width: 220px;
+  background: var(--surface);
+  gap: 9px;
+}
+
+.rolagem tbody tr:hover th,
+.rolagem tbody tr:hover td {
+  background: var(--surface-soft);
+}
+
+.avatar {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 9px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-size: 9px;
+  font-weight: 500;
+}
+
+.rolagem tbody th > span:last-child {
+  display: grid;
+  gap: 2px;
+}
+
+.rolagem tbody strong {
+  color: var(--ink);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.rolagem tbody small {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted-light);
+  font-size: 8px;
+  font-weight: 400;
+}
+
+.rolagem tbody tr:last-child th,
+.rolagem tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.vazio {
+  display: flex;
+  min-height: 210px;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  color: var(--muted);
+  text-align: left;
+  gap: 15px;
+}
+
+.vazio > span {
+  display: grid;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 13px;
+  background: var(--primary-soft);
+  font-size: 17px;
+}
+
+.vazio h2,
+.vazio p {
+  margin: 0;
+}
+
+.vazio h2 {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.vazio p {
+  max-width: 48ch;
+  margin-top: 5px;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .cabecalho {
+    display: grid;
+    padding-inline: 16px;
+  }
+}

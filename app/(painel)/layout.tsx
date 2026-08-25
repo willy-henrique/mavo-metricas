@@ -17,7 +17,7 @@ export default async function PainelLayout({ children }: Readonly<{ children: Re
 
   return (
     <div className={styles.shell}>
-      <NavTopo nome={nome} empresa={empresa} ativo="visao-geral" />
+      <NavTopo nome={nome} empresa={empresa} />
       {!pronto ? (
         <div className={styles.aviso} role="status">
           O Mavo Talk está acordando. Mostraremos o nome da sua empresa assim que ele responder.
