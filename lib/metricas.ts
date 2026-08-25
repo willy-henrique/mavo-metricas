@@ -80,6 +80,39 @@ export const desempenhoBotSchema = z.object({
   triagemConcluida: z.number().int().nonnegative(),
 });
 
+export const metricasFilasSchema = z.array(
+  z.object({
+    id: z.string().min(1),
+    nome: z.string().min(1),
+    cor: z.string().regex(/^#[0-9a-f]{6}$/i),
+    tickets: z.number().int().nonnegative(),
+    tmeSegundos: z.number().nonnegative().finite().nullable(),
+    slaEstourado: z.number().int().nonnegative(),
+  }),
+);
+
+export const linhaRelatorioTicketSchema = z.object({
+  id: z.string().min(1),
+  criadoEm: z.string().datetime(),
+  encerradoEm: z.string().datetime().nullable(),
+  contatoNome: z.string().min(1),
+  contatoTelefone: z.string().min(1),
+  fila: z.string().min(1),
+  atendente: z.string().min(1),
+  status: z.string().min(1),
+  motivoEncerramento: z.string().nullable(),
+  tmeSegundos: z.number().nonnegative().finite().nullable(),
+  tmaSegundos: z.number().nonnegative().finite().nullable(),
+  slaEstourado: z.boolean(),
+  csat: z.number().min(1).max(5).nullable(),
+});
+
+export const relatorioTicketsSchema = z.object({
+  linhas: z.array(linhaRelatorioTicketSchema),
+  total: z.number().int().min(0).max(5_000),
+  proximoCursor: z.string().min(1).max(512).nullable(),
+});
+
 export type BlocoPeriodo = z.infer<typeof blocoPeriodoSchema>;
 export type Overview = z.infer<typeof overviewSchema>;
 export type BaldeSerie = z.infer<typeof serieTemporalSchema>[number];
@@ -88,3 +121,6 @@ export type SerieMeta = z.infer<typeof serieMetaSchema>;
 export type OpcoesContexto = z.infer<typeof opcoesContextoSchema>;
 export type ProducaoAtendente = z.infer<typeof agentesSchema>[number];
 export type DesempenhoBot = z.infer<typeof desempenhoBotSchema>;
+export type MetricasFila = z.infer<typeof metricasFilasSchema>[number];
+export type LinhaRelatorioTicket = z.infer<typeof linhaRelatorioTicketSchema>;
+export type RelatorioTickets = z.infer<typeof relatorioTicketsSchema>;

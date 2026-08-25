@@ -12,7 +12,7 @@ type NavTopoProps = {
 
 const itens = [
   { chave: "visao-geral", rotulo: "Visão geral", href: "/", disponivel: true },
-  { chave: "relatorios", rotulo: "Relatórios", href: "/relatorios", disponivel: false },
+  { chave: "relatorios", rotulo: "Relatórios", href: "/relatorios", disponivel: true },
   { chave: "automatico", rotulo: "Automático", href: "/automatico", disponivel: true },
   { chave: "equipe", rotulo: "Equipe", href: "/equipe", disponivel: true },
 ];

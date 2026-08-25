@@ -1,0 +1,257 @@
+.cabecalhoPagina {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  gap: 24px;
+}
+
+.cabecalhoPagina p,
+.cabecalhoPagina h1,
+.cabecalhoPagina > div > span {
+  margin: 0;
+}
+
+.cabecalhoPagina p,
+.estado p {
+  color: var(--primary-dark);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.cabecalhoPagina h1,
+.estado h1 {
+  margin: 5px 0 0;
+  color: var(--ink);
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.cabecalhoPagina > div > span {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.resumo {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.resumo > span {
+  display: grid;
+  min-width: 102px;
+  padding: 10px 13px;
+  color: var(--muted);
+  font-size: 8px;
+  gap: 2px;
+}
+
+.resumo > span + span {
+  border-left: 1px solid var(--line);
+}
+
+.resumo strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.resumo span[data-alerta] strong {
+  color: var(--danger);
+}
+
+.filas {
+  overflow: hidden;
+  margin-bottom: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: 0 10px 32px color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.filas > header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 17px 20px 13px;
+  gap: 20px;
+}
+
+.filas header p,
+.filas header h2 {
+  margin: 0;
+}
+
+.filas header p {
+  color: var(--muted-light);
+  font-size: 8px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.filas header h2 {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.filas header > span {
+  color: var(--muted-light);
+  font-size: 9px;
+}
+
+.listaFilas {
+  display: grid;
+  max-height: 260px;
+  overflow-y: auto;
+  border-top: 1px solid var(--line);
+  padding: 6px 20px 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 28px;
+}
+
+.listaFilas article {
+  min-width: 0;
+  border-bottom: 1px solid var(--line);
+  padding: 11px 0 10px;
+}
+
+.nomeFila {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 8px;
+}
+
+.nomeFila > i {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 3px;
+}
+
+.nomeFila > span {
+  display: grid;
+  min-width: 0;
+  flex: 1;
+  gap: 2px;
+}
+
+.nomeFila strong {
+  overflow: hidden;
+  color: var(--ink-soft);
+  font-size: 10px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.nomeFila small {
+  color: var(--muted-light);
+  font-size: 8px;
+}
+
+.nomeFila b {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.trilho {
+  height: 3px;
+  overflow: hidden;
+  margin: 8px 0 0 16px;
+  border-radius: 99px;
+  background: var(--surface-soft);
+}
+
+.trilho span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.filasVazias {
+  margin: 0;
+  border-top: 1px solid var(--line);
+  padding: 22px 20px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.estado {
+  display: flex;
+  min-height: 280px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  padding: 30px;
+  gap: 18px;
+}
+
+.estado > span {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 auto;
+  border: 3px solid var(--primary-soft);
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.estado p,
+.estado small {
+  margin: 0;
+}
+
+.estado small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+@media (max-width: 760px) {
+  .cabecalhoPagina {
+    display: grid;
+  }
+
+  .resumo {
+    width: 100%;
+  }
+
+  .resumo > span {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .listaFilas {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 460px) {
+  .resumo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .resumo > span {
+    padding-inline: 9px;
+  }
+
+  .filas > header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
