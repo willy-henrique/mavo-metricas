@@ -3,7 +3,6 @@ import { BarraContexto } from "@/components/barra-contexto";
 import { ColunaAgora } from "@/components/coluna-agora";
 import { MetricaHeroi } from "@/components/metrica-heroi";
 import { MetricaSecundaria } from "@/components/metrica-secundaria";
-import { PainelClientes } from "@/components/painel-clientes";
 import { RitmoPeriodo } from "@/components/ritmo-periodo";
 import { carregarContextoPainel } from "@/lib/contexto-painel";
 import { parametrosMetricas, type ParametrosBusca } from "@/lib/consulta-metricas";
@@ -15,7 +14,6 @@ import {
 } from "@/lib/formato";
 import {
   metricsMetaSchema,
-  metricasClientesSchema,
   opcoesContextoSchema,
   overviewSchema,
   serieMetaSchema,
@@ -42,22 +40,19 @@ function horaDaAtualizacao(instante: string, timezone: string): string {
 
 async function carregarIndicadores(token: string, query: string) {
   try {
-    const [respostaLive, respostaOverview, respostaSerie, respostaClientes, respostaFiltros] = await Promise.all([
+    const [respostaLive, respostaOverview, respostaSerie, respostaFiltros] = await Promise.all([
       talkGet<unknown>("/live", { token }),
       talkGet<unknown>(`/overview${query ? `?${query}` : ""}`, { token }),
       talkGet<unknown>(`/timeseries${query ? `?${query}` : ""}`, { token }),
-      talkGet<unknown>(`/customers${query ? `?${query}` : ""}`, { token }),
       talkGet<unknown>("/filters", { token }),
     ]);
 
     const filtrosMeta = metricsMetaSchema.parse(respostaFiltros.meta);
-    metricsMetaSchema.parse(respostaClientes.meta);
     return {
       estado: "pronto" as const,
       live: snapshotAgoraSchema.parse(respostaLive.data),
       overview: overviewSchema.parse(respostaOverview.data),
       serie: serieTemporalSchema.parse(respostaSerie.data),
-      clientes: metricasClientesSchema.parse(respostaClientes.data),
       filtros: opcoesContextoSchema.parse(respostaFiltros.data),
       overviewMeta: metricsMetaSchema.parse(respostaOverview.meta),
       serieMeta: serieMetaSchema.parse(respostaSerie.meta),
@@ -120,7 +115,7 @@ export default async function VisaoGeral({
     );
   }
 
-  const { live, overview, serie, clientes, filtros, overviewMeta, serieMeta } = indicadores;
+  const { live, overview, serie, filtros, overviewMeta, serieMeta } = indicadores;
   const periodoRotulo = PERIODOS.find((item) => item.chave === periodo.chave)?.rotulo ?? "Hoje";
   const atual = overview.atual;
   const mensagens = atual.mensagensEnviadas + atual.mensagensRecebidas;
@@ -193,12 +188,6 @@ export default async function VisaoGeral({
             </div>
 
             <RitmoPeriodo serie={serie} meta={serieMeta} />
-
-            <PainelClientes
-              metricas={clientes}
-              timezone={overviewMeta.timezone}
-              query={query}
-            />
           </div>
         </div>
       </div>

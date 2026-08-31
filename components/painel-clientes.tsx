@@ -11,6 +11,7 @@ type PainelClientesProps = {
   metricas: MetricasClientes;
   timezone: string;
   query: string;
+  exibirAtalhoRelatorios?: boolean;
 };
 
 function formatarTelefone(valor: string): string {
@@ -39,7 +40,12 @@ function formatarUltimoChamado(instante: string, timezone: string): string {
   }
 }
 
-export function PainelClientes({ metricas, timezone, query }: PainelClientesProps) {
+export function PainelClientes({
+  metricas,
+  timezone,
+  query,
+  exibirAtalhoRelatorios = true,
+}: PainelClientesProps) {
   const { resumo, ranking } = metricas;
   const maiorVolume = Math.max(1, ...ranking.map((cliente) => cliente.tickets));
   const relatoriosHref = query ? `/relatorios?${query}` : "/relatorios";
@@ -55,7 +61,7 @@ export function PainelClientes({ metricas, timezone, query }: PainelClientesProp
             insatisfação.
           </span>
         </div>
-        <Link href={relatoriosHref}>Ver chamados</Link>
+        {exibirAtalhoRelatorios ? <Link href={relatoriosHref}>Ver chamados</Link> : null}
       </header>
 
       <div className={styles.resumo} aria-label="Resumo dos clientes no período">

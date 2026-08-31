@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
 import { BarraContexto } from "@/components/barra-contexto";
+import { PainelClientes } from "@/components/painel-clientes";
 import { TabelaRelatorio } from "@/components/tabela-relatorio";
 import { carregarContextoPainel } from "@/lib/contexto-painel";
 import { parametrosMetricas, type ParametrosBusca } from "@/lib/consulta-metricas";
 import { formatarDuracao, formatarNumero } from "@/lib/formato";
 import {
+  metricasClientesSchema,
   metricasFilasSchema,
   metricsMetaSchema,
   opcoesContextoSchema,
@@ -32,17 +34,20 @@ async function carregarRelatorios(token: string, query: string, cursor: string |
   if (cursor) paramsRelatorio.set("cursor", cursor);
 
   try {
-    const [respostaRelatorio, respostaFilas, respostaFiltros] = await Promise.all([
+    const [respostaRelatorio, respostaClientes, respostaFilas, respostaFiltros] = await Promise.all([
       talkGet<unknown>(`/reports/tickets?${paramsRelatorio.toString()}`, { token }),
+      talkGet<unknown>(`/customers${query ? `?${query}` : ""}`, { token }),
       talkGet<unknown>(`/queues${query ? `?${query}` : ""}`, { token }),
       talkGet<unknown>("/filters", { token }),
     ]);
     const meta = metricsMetaSchema.parse(respostaRelatorio.meta);
+    metricsMetaSchema.parse(respostaClientes.meta);
     metricsMetaSchema.parse(respostaFilas.meta);
     metricsMetaSchema.parse(respostaFiltros.meta);
     return {
       estado: "pronto" as const,
       relatorio: relatorioTicketsSchema.parse(respostaRelatorio.data),
+      clientes: metricasClientesSchema.parse(respostaClientes.data),
       filas: metricasFilasSchema.parse(respostaFilas.data),
       filtros: opcoesContextoSchema.parse(respostaFiltros.data),
       meta,
@@ -100,7 +105,7 @@ export default async function RelatoriosPage({
           <div>
             <p>Diagnóstico operacional</p>
             <h1>Relatórios</h1>
-            <span>Investigue o volume por fila e leve o detalhe para sua análise.</span>
+            <span>Identifique recorrência por cliente, volume por fila e o detalhe de cada chamado.</span>
           </div>
           <div className={styles.resumo} aria-label="Resumo do relatório">
             <span>
@@ -117,6 +122,15 @@ export default async function RelatoriosPage({
             </span>
           </div>
         </header>
+
+        <div className={styles.clientes}>
+          <PainelClientes
+            metricas={resultado.clientes}
+            timezone={resultado.meta.timezone}
+            query={query}
+            exibirAtalhoRelatorios={false}
+          />
+        </div>
 
         <section className={styles.filas} aria-labelledby="titulo-filas-relatorio">
           <header>

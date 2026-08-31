@@ -2,14 +2,13 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-test("a visao geral busca as fontes operacionais e de clientes em paralelo", async () => {
+test("a visao geral busca as quatro fontes operacionais em paralelo", async () => {
   const fonte = await readFile("app/(painel)/page.tsx", "utf8");
   assert.match(fonte, /Promise\.all/);
   assert.match(fonte, /\/overview/);
   assert.match(fonte, /\/timeseries/);
   assert.match(fonte, /\/filters/);
   assert.match(fonte, /\/live/);
-  assert.match(fonte, /\/customers/);
 });
 
 test("a pagina trata o Talk hibernando sem quebrar", async () => {
@@ -24,19 +23,6 @@ test("todos os contratos HTTP sao validados antes de renderizar", async () => {
   assert.match(fonte, /overviewSchema\.parse/);
   assert.match(fonte, /serieTemporalSchema\.parse/);
   assert.match(fonte, /opcoesContextoSchema\.parse/);
-  assert.match(fonte, /metricasClientesSchema\.parse/);
-});
-
-test("a visao geral mostra recorrencia e quem mais abriu chamados", async () => {
-  const pagina = await readFile("app/(painel)/page.tsx", "utf8");
-  const painel = await readFile("components/painel-clientes.tsx", "utf8");
-  assert.match(pagina, /PainelClientes/);
-  assert.match(painel, /Quem mais abriu chamados/);
-  assert.match(painel, /Clientes atendidos/);
-  assert.match(painel, /Recorrentes/);
-  assert.match(painel, /Precisam de atenção/);
-  assert.match(painel, /SLA/);
-  assert.match(painel, /nota baixa/);
 });
 
 test("os graficos nao codificam informacao so por cor", async () => {

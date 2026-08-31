@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useTransition, type MouseEvent } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { sair } from "@/app/(painel)/actions";
 import { TemaToggle } from "./tema-toggle";
 import styles from "./nav-topo.module.css";
@@ -38,10 +39,34 @@ function IconeNav({ chave }: { chave: string }) {
 
 export function NavTopo({ nome, empresa, role }: NavTopoProps) {
   const pathname = usePathname();
+  const router = useRouter();
+  const [destinoPendente, setDestinoPendente] = useState<string | null>(null);
+  const [transicaoPendente, iniciarTransicao] = useTransition();
 
   function estaAtivo(href: string): boolean {
     return href === "/" ? pathname === "/" : pathname.startsWith(href);
   }
+
+  function navegar(evento: MouseEvent<HTMLAnchorElement>, href: string) {
+    if (
+      evento.button !== 0
+      || evento.metaKey
+      || evento.ctrlKey
+      || evento.shiftKey
+      || evento.altKey
+      || evento.currentTarget.target === "_blank"
+    ) {
+      return;
+    }
+
+    evento.preventDefault();
+    if (href === pathname) return;
+    setDestinoPendente(href);
+    iniciarTransicao(() => router.push(href));
+  }
+
+  const navegando = transicaoPendente && destinoPendente !== null;
+  const destinoRotulo = itens.find((item) => item.href === destinoPendente)?.rotulo;
 
   return (
     <>
@@ -66,6 +91,9 @@ export function NavTopo({ nome, empresa, role }: NavTopoProps) {
                   href={item.href}
                   key={item.chave}
                   aria-current={estaAtivo(item.href) ? "page" : undefined}
+                  aria-busy={navegando && destinoPendente === item.href ? true : undefined}
+                  data-carregando={navegando && destinoPendente === item.href ? true : undefined}
+                  onClick={(evento) => navegar(evento, item.href)}
                 >
                   <IconeNav chave={item.chave} />
                   {item.rotulo}
@@ -116,6 +144,12 @@ export function NavTopo({ nome, empresa, role }: NavTopoProps) {
             </details>
           </div>
         </div>
+        <span className={styles.progressoNavegacao} data-visivel={navegando || undefined} aria-hidden>
+          <span />
+        </span>
+        <span className={styles.statusNavegacao} role="status" aria-live="polite">
+          {navegando ? `Abrindo ${destinoRotulo ?? "página"}` : ""}
+        </span>
       </header>
     </>
   );

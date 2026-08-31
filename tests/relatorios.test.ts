@@ -2,21 +2,47 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 
-test("relatorios carregam tabela, filas e filtros em paralelo", async () => {
+test("relatorios carregam tabela, clientes, filas e filtros em paralelo", async () => {
   const fonte = await readFile("app/(painel)/relatorios/page.tsx", "utf8");
   assert.match(fonte, /Promise\.all/);
   assert.match(fonte, /\/reports\/tickets/);
   assert.match(fonte, /\/queues/);
+  assert.match(fonte, /\/customers/);
   assert.match(fonte, /\/filters/);
   assert.match(fonte, /TabelaRelatorio/);
+  assert.match(fonte, /PainelClientes/);
 });
 
 test("tela valida todas as respostas vindas do Talk", async () => {
   const fonte = await readFile("app/(painel)/relatorios/page.tsx", "utf8");
   assert.match(fonte, /relatorioTicketsSchema\.parse/);
   assert.match(fonte, /metricasFilasSchema\.parse/);
+  assert.match(fonte, /metricasClientesSchema\.parse/);
   assert.match(fonte, /opcoesContextoSchema\.parse/);
   assert.match(fonte, /metricsMetaSchema\.parse/);
+});
+
+test("relatorios mostram recorrencia e quem mais abriu chamados", async () => {
+  const painel = await readFile("components/painel-clientes.tsx", "utf8");
+  assert.match(painel, /Quem mais abriu chamados/);
+  assert.match(painel, /Clientes atendidos/);
+  assert.match(painel, /Recorrentes/);
+  assert.match(painel, /Precisam de atenção/);
+  assert.match(painel, /SLA/);
+  assert.match(painel, /nota baixa/);
+});
+
+test("navegacao responde imediatamente enquanto a rota carrega", async () => {
+  const [nav, loading, css] = await Promise.all([
+    readFile("components/nav-topo.tsx", "utf8"),
+    readFile("app/(painel)/loading.tsx", "utf8"),
+    readFile("components/nav-topo.module.css", "utf8"),
+  ]);
+  assert.match(nav, /router\.push/);
+  assert.match(nav, /data-carregando/);
+  assert.match(nav, /role="status"/);
+  assert.match(loading, /Abrindo o painel/);
+  assert.match(css, /progressoNavegacao/);
 });
 
 test("tabela tem cabecalho acessivel, vazio honesto e paginacao por cursor", async () => {
