@@ -91,6 +91,29 @@ export const metricasFilasSchema = z.array(
   }),
 );
 
+export const metricasClientesSchema = z.object({
+  resumo: z.object({
+    clientesAtendidos: z.number().int().nonnegative(),
+    clientesRecorrentes: z.number().int().nonnegative(),
+    taxaRecorrencia: z.number().min(0).max(1).nullable(),
+    clientesEmAtencao: z.number().int().nonnegative(),
+  }),
+  ranking: z.array(
+    z.object({
+      id: z.string().min(1),
+      nome: z.string().min(1),
+      telefone: z.string().min(1),
+      tickets: z.number().int().positive(),
+      abertos: z.number().int().nonnegative(),
+      slaEstourado: z.number().int().nonnegative(),
+      avaliacoesNegativas: z.number().int().nonnegative(),
+      csat: z.number().min(1).max(5).nullable(),
+      ultimoChamadoEm: z.string().datetime(),
+      emAtencao: z.boolean(),
+    }),
+  ),
+});
+
 export const linhaRelatorioTicketSchema = z.object({
   id: z.string().min(1),
   criadoEm: z.string().datetime(),
@@ -138,6 +161,7 @@ export type OpcoesContexto = z.infer<typeof opcoesContextoSchema>;
 export type ProducaoAtendente = z.infer<typeof agentesSchema>[number];
 export type DesempenhoBot = z.infer<typeof desempenhoBotSchema>;
 export type MetricasFila = z.infer<typeof metricasFilasSchema>[number];
+export type MetricasClientes = z.infer<typeof metricasClientesSchema>;
 export type LinhaRelatorioTicket = z.infer<typeof linhaRelatorioTicketSchema>;
 export type RelatorioTickets = z.infer<typeof relatorioTicketsSchema>;
 export type UsuarioGerenciado = z.infer<typeof usuarioGerenciadoSchema>;

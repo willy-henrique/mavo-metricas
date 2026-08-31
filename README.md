@@ -1,6 +1,6 @@
 # mavo-metricas
 
-Painel de gerenciamento do Mavo para acompanhar métricas de atendimento, produção da equipe, atendimento automático e relatórios do WhatsApp.
+Painel de gerenciamento do Mavo para acompanhar métricas de atendimento, recorrência e atenção por cliente, produção da equipe, atendimento automático e relatórios do WhatsApp.
 
 ## Arquitetura
 
@@ -65,7 +65,7 @@ O `MAVO_MANAGEMENT_URL` é usado nos links de recuperação de senha. Depois de 
 
 Antes de publicar o painel, confirme que o Mavo Talk em produção possui:
 
-1. As rotas `/api/metrics/v1/health`, `/auth/login`, `/me`, `/live`, `/overview`, `/timeseries` e `/filters`.
+1. As rotas `/api/metrics/v1/health`, `/auth/login`, `/me`, `/live`, `/overview`, `/timeseries`, `/customers` e `/filters`.
 2. A migration `password_reset_tokens` aplicada para o fluxo de recuperação de senha.
 3. Um usuário ativo com papel `admin` ou `gestor`.
 4. A conexão com o PostgreSQL/Supabase saudável.
