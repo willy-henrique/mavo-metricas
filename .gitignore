@@ -24,3 +24,5 @@
 # logs and operating system
 *.log
 .DS_Store
+
+.vercel
